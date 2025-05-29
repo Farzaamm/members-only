@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/nav') %>
+
+    <form action="/create" method="POST">
+        <h1>Share your message with the club members</h1>
+        <label for="content">Message:</label>
+        <textarea name="content" id="content" rows="4" placeholder="Write your message here..." required></textarea>
+        <button>Send</button>
+    </form>
+    
+    <%- include('../partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/nav') %>
+
+    <form action="/signup" method="POST">
+        <h1>Sign Up</h1>
+        <p>Welcome! Please fill in the details below to create your account.</p>
+        <label for="first_Name">First Name:</label>
+        <input type="text" name="first_Name" id="first_Name" placeholder="John" required>
+        <label for="last_Name">Last Name:</label>
+        <input type="text" name="last_Name" id="last_Name" placeholder="Smith" required>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="email@example.com">
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" required>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" name="confirmPassword" id="confirmPassword">
+        <input type="checkbox" name="terms" id="terms" required>
+        <label for="terms">I agree to the Terms of Service and Privacy Policy</label>
+        <p>By signing up, you agree to our <a href="/terms">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.</p>
+        <button type="submit">Sign Up</button>
+        <p>Already have an account? <a href="/login">Login here</a>.</p>
+        <p>Or go back to the <a href="/">homepage</a>.</p>
+        <p>Need help? <a href="/help">Contact support</a>.</p>
+        <p>For more information, visit our <a href="/faq">FAQ page</a>.</p>
+    </form>
+    
+    <%- include('../partials/footer') %>
+</body>
+</html>
