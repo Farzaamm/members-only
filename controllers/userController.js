@@ -4,14 +4,14 @@ const passport = require('passport');
 
 
 module.exports = userController = {
-    login: (req, res) => {
+    showLoginForm: (req, res) => {
         res.render('pages/login', {title: 'Login'});
     },
-    signup: (req, res) => {
-        res.render('pages/signup', {title: 'Signup'});
+    showSignupForm: (req, res) => {
+        res.render('pages/signup', {title: 'Signup', errors: []});// Initialize errors as an empty array
     },
     createUser : async (req, res) => {
-        const {first_Name, last_Name, username, email, password, confirmPassword} = req.body;
+        const {first_name, last_name, username, email, password, confirmPassword} = req.body;
         const errors = [];
         if (password !== confirmPassword) {
             errors.push({msg: 'Passwords do not match'});
@@ -25,7 +25,8 @@ module.exports = userController = {
                 res.render('pages/signup', {title: 'Signup', errors});
             } else {
                 const hashedPassword = await bcrypt.hash(password, 10);
-                await User.create({first_Name, last_Name, username, email, password: hashedPassword});
+                await User.create({first_name, last_name, username, email, password: hashedPassword});
+                req.flash('success_msg', 'You are now registered and can log in');
                 res.redirect('/login');
             }
         }

@@ -4,13 +4,21 @@
 <body>
     <%- include('../partials/nav') %>
 
+    <% if (errors) { %>
+        <div class="alert alert-danger">
+            <% errors.forEach(error => { %>
+            <p><%= error.msg %></p>
+            <% }); %>
+        </div>
+    <% } %>
+
     <form action="/signup" method="POST">
         <h1>Sign Up</h1>
         <p>Welcome! Please fill in the details below to create your account.</p>
-        <label for="first_Name">First Name:</label>
-        <input type="text" name="first_Name" id="first_Name" placeholder="John" required>
-        <label for="last_Name">Last Name:</label>
-        <input type="text" name="last_Name" id="last_Name" placeholder="Smith" required>
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name" placeholder="John" required>
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name" placeholder="Smith" required>
         <label for="email">Email</label>
         <input type="email" name="email" id="email" placeholder="email@example.com">
         <label for="username">Username</label>

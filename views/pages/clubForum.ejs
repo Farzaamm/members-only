@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/nav') %>
+    <% if (success_msg) { %>
+        <div class="alert alert-success"><%= success_msg %></div>
+    <% } %>
+    <% if (error_msg) { %>
+        <div class="alert alert-danger"><%= error_msg %></div>
+    <% } %>
+    <h1>Hello, <%= user.first_name %></h1> 
+    <h3>See the messages of the club members</h3>
+    <% if (messages.length > 0) { %>
+        <ul>
+            <% messages.forEach(message => { %>
+                <li>
+                    <strong><%= message.username %></strong>
+                    <p><%= message.content %></p>
+                    <span class="timestamp"><em><%= message.created_at %></em></span>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+    
+    <%- include('../partials/footer') %>
+</body>
+</html>

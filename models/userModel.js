@@ -2,14 +2,14 @@ const pool = require('../db/pool');
 
 const User = {
     create: async (userData) => {
-        const { first_Name, last_Name, username, email, password } = userData;
+        const { first_name, last_name, username, email, password } = userData;
         const query = `
             INSERT INTO users (first_name, last_name, username, email, password)
             VALUES ($1, $2, $3, $4, $5)
             RETURNING id, first_name, last_name, username, email
         `;
         try {
-            const result = await pool.query(query, [first_Name, last_Name, username, email, password]);
+            const result = await pool.query(query, [first_name, last_name, username, email, password]);
             return result.rows[0];
         } catch (error) {
             console.error('Error creating user:', error);

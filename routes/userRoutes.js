@@ -4,11 +4,14 @@ const userController = require('../controllers/userController');
 const validator = require('../middlewares/validator');
 
 // Create
-router.get('/signup', userController.signup);
-router.post('/signup', validator.validateSignup, userController.createUser);
+router.get('/signup', userController.showSignupForm);
+router.post('/signup', 
+    validator.validateSignup, 
+    validator.handleValidationErrors,
+    userController.createUser);
 
 // Read
-router.get('/login', userController.login);
+router.get('/login', userController.showLoginForm);
 router.post('/login', validator.validateLogin, userController.userLogin);
 
 router.get('/logout', userController.logout);

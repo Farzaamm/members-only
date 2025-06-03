@@ -30,6 +30,6 @@ const Message = {
             throw error;
         }
     }
-}
+};
 
 module.exports = Message;
