@@ -2,7 +2,7 @@ const pool = require('../db/pool');
 
 const User = {
     create: async (userData) => {
-        const { first_name, last_name, username, email, password } = userData;
+        const { first_name, last_name, username, email, password } = userData; // password already hashed in controller
         const query = `
             INSERT INTO users (first_name, last_name, username, email, password)
             VALUES ($1, $2, $3, $4, $5)

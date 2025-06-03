@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const app = express();
 const passport = require('./config/passport');
 const flash = require('connect-flash');
 
@@ -8,13 +9,13 @@ const indexRoutes = require('./routes/indexRoutes');
 const userRoutes = require('./routes/userRoutes');
 const msgRoutes = require('./routes/msgRoutes');
 
-const app = express();
 
 // setup view engine
 app.set('view engine', 'ejs');
 
-// static files
+// setup static files
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json()); // parse JSON bodies
 app.use(express.urlencoded({ extended: true }));
 
 // setup session

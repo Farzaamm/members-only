@@ -27,8 +27,8 @@
 [] join the club page by entering the passcode
 
 [x] login form
-[] if user logged-in -> show "create new msg"
-[] create msg form
+[x] if user logged-in -> show "create new msg"
+[x] create msg form
 
 [] display all msgs on the homepage
 [] only admins can DELETE msgs

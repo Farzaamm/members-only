@@ -5,7 +5,7 @@ const passport = require('passport');
 
 module.exports = userController = {
     showLoginForm: (req, res) => {
-        res.render('pages/login', {title: 'Login'});
+        res.render('pages/login', {title: 'Login', message: req.flash('error')}); // Pass the error message from flash
     },
     showSignupForm: (req, res) => {
         res.render('pages/signup', {title: 'Signup', errors: []});// Initialize errors as an empty array
@@ -25,9 +25,27 @@ module.exports = userController = {
                 res.render('pages/signup', {title: 'Signup', errors});
             } else {
                 const hashedPassword = await bcrypt.hash(password, 10);
-                await User.create({first_name, last_name, username, email, password: hashedPassword});
-                req.flash('success_msg', 'You are now registered and can log in');
-                res.redirect('/login');
+                const newUser = await User.create({first_name, last_name, username, email, password: hashedPassword});
+                if (!newUser) {
+                    console.error('Error creating user');
+                    return res.status(500).send('Error creating user');
+                }
+                // Automatically log in the user after registration
+                passport.authenticate('local', (err, newUser) => {
+                    if (err || !newUser) {
+                        console.error('Error logging in user:', err);
+                        return res.status(500).send('Error logging in user');
+                    }
+                    req.login(newUser, (err) => {
+                    if (err) {
+                        console.error('Error logging in user:', err);
+                        return res.status(500).send('Error logging in user');
+                    }
+                    req.flash('success_msg', 'You are now registered and can log in');
+                    res.redirect('/clubForum');
+                    });
+                })(req, res);
+                
             }
         }
         

@@ -9,7 +9,7 @@ module.exports = msgController = {
         }
         try {
             const messages = await Message.getAllMessages();
-            res.render('pages/clubForum', { title: 'Messages', messages });
+            res.render('pages/clubForum', { title: 'Forum', messages });
         } catch (error) {
             console.error('Error fetching messages:', error);
             req.flash('error_msg', 'An error occurred while fetching messages.');
