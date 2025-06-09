@@ -1,5 +1,6 @@
 const express = require('express');
 const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 const path = require('path');
 const app = express();
 const passport = require('./config/passport');
@@ -8,6 +9,7 @@ const flash = require('connect-flash');
 const indexRoutes = require('./routes/indexRoutes');
 const userRoutes = require('./routes/userRoutes');
 const msgRoutes = require('./routes/msgRoutes');
+const clubRoutes = require('./routes/clubRoutes');
 
 
 // setup view engine
@@ -20,6 +22,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // setup session
 app.use(session({
+    store: new pgSession({ // use PostgreSQL for session storage
+        conString: process.env.DATABASE_URL,
+        tableName: 'session',
+        createTableIfMissing: true,
+    }), 
     secret: process.env.SESSION_SECRET,  
     resave: false,
     saveUninitialized: false,
@@ -44,6 +51,7 @@ app.use((req, res, next) => {
 app.use('/', indexRoutes);
 app.use('/', userRoutes);
 app.use('/', msgRoutes);
+app.use('/', clubRoutes);
 
 
 // 404

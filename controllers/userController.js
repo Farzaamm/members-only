@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/userModel');
 const passport = require('passport');
+const Club = require('../models/clubModel');
 
 
 module.exports = userController = {
@@ -52,7 +53,7 @@ module.exports = userController = {
     },
     userLogin: (req, res, next) => {
         passport.authenticate('local', {
-            successRedirect: '/',
+            successRedirect: '/clubForum',
             failureRedirect: '/login',
             failureFlash: true
         })(req, res, next);

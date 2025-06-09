@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <% if (error.length > 0) { %>
+        <div class="alert alert-warning"><%= error %></div>
+    <% } %>
+
+    <%- include('../partials/nav') %>
+    <% if (success_msg) { %>
+        <div class="alert alert-success"><%= success_msg %></div>
+    <% } %>
+    <% if (error_msg) { %>
+        <div class="alert alert-danger"><%= error_msg %></div>
+    <% } %>
+    <h1>Join</h1>
+    <form action="/joinClub" method="POST">
+        <div class="form-group">
+            <label for="clubName">Club Name:</label>
+            <input type="text" id="search" name="search" placeholder="Search for a club" autofocus>
+        </div>
+        <div class="form-group">
+            <label for="passcode">Passcode:</label>
+            <input type="password" id="passcode" name="passcode" required>
+        </div>
+        <button>Join</button>
+    </form>
+    
+    <h2>Available Clubs</h2>
+    <%= clubs.map(club => `${club.name}`).join('') %>
+    
+    <%- include('../partials/footer') %>
+</body>
+</html>

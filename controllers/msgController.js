@@ -42,7 +42,7 @@ module.exports = msgController = {
                 userId: req.user.id,
                 content: content.trim()
             };
-            const newMessage = await Message.create(messageData);
+            await Message.create(messageData);
             req.flash('success_msg', 'Message created successfully!');
             res.redirect('/clubForum');
         } catch (error) {

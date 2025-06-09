@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+<body>
+    <%- include('../partials/nav') %>
+    <% if (success_msg) { %>
+        <div class="alert alert-success"><%= success_msg %></div>
+    <% } %>
+    <% if (error_msg) { %>
+        <div class="alert alert-danger"><%= error_msg %></div>
+    <% } %>
+    <h1>Create a New Club</h1>
+    <form action="/createClub" method="POST">
+        <div class="form-group">
+            <label for="clubName">Club Name:</label>
+            <input type="text" id="clubName" name="clubName" required>
+        </div>
+        <div>
+            <label for="passcode">Passcode: </label>
+            <input type="password" id="passcode" name="passcode" required>
+        </div>
+        <div>
+            <label for="confirmPasscode">Confirm passcode: </label>
+            <input type="password" id="confirmPasscode" name="confirmPasscode" required>
+        </div>
+        <button>Create</button>
+    </form>
+    
+    <%- include('../partials/footer') %>
+</body>
+</html>
