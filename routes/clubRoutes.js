@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const clubController = require('../controllers/clubController');
-const msgController = require('../controllers/msgController');
 
 router.get('/createClub', clubController.showCreateClubForm);
 router.post('/createClub', clubController.createClub);
-router.get('/joinClub', clubController.showClubs);
+
+router.get('/joinClub/:club_id', clubController.showJoinClubForm);
+
+router.post('/joinClub/:club_id', clubController.joinClub);
 
 
 module.exports = router;

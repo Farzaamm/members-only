@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const User = require('../models/userModel');
 const passport = require('passport');
-const Club = require('../models/clubModel');
+
 
 
 module.exports = userController = {

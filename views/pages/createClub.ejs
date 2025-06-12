@@ -25,6 +25,20 @@
         </div>
         <button>Create</button>
     </form>
+
+     <h2>or join an existing club</h2>
+    <ul>
+        <% clubs.forEach(club => { %>
+            <li>
+                <a href="/joinClub/<%= club.id %>"><%= club.name %></a>
+                <% if (club.passcode) { %>
+                    <span class="badge badge-secondary">Private</span>
+                <% } else { %>
+                    <span class="badge badge-primary">Public</span>
+                <% } %>
+            </li>
+        <% }) %>
+    </ul>
     
     <%- include('../partials/footer') %>
 </body>

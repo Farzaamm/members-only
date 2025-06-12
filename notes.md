@@ -24,14 +24,17 @@
     [x] hash & salt
 
 ## members can only join clubs by entering a secrect passcode
-[] join the club page by entering the ~~passcode~~ password
+[x] join the club by entering the ~~passcode~~ password
 
 [x] login form
 [x] if user logged-in -> show "create new msg"
 [x] create msg form
 
 [x] display all msgs on the ~~homepage~~ club forum
+[x] members can create their own groups -> automatically assgined admin
+
+[] only members can see the details of the msgs
+[] users can delete/edit their own msgs
 [] only admins can DELETE msgs
 
-[] members can create their own groups -> automatically assgined admin
 
