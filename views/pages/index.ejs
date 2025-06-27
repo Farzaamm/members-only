@@ -6,8 +6,43 @@
 
     <% if (!locals.user) { %>
         <h1>Welcome to Clubhouse</h1>
+         <% if (messages.length > 0) { %>
+        <ul>
+            <% messages.forEach(message => { %>
+                <li>
+                    <strong>Anonymous</strong>
+                    <p><%= message.content %></p>
+                    <span class="timestamp"><em>xxxx-xx-xx</em></span>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
     <% } else { %>
         <h1>Hello, <%= user.first_name %></h1> 
+        <% if (messages.length > 0) { %>
+            <ul>
+                <% messages.forEach(message => { %>
+                    <li>
+                        <strong><%= message.username %></strong>
+                        <p><%= message.content %></p>
+                        <span class="timestamp"><em><%= message.created_at %></em></span>
+                        <% if (user.username === message.username) { %>
+                            <form action="/deleteMessage" method="POST" style="display:inline;">
+                                <input type="hidden" name="messageId" value="<%= message.id %>">
+                                <button type="submit">Delete</button>
+                            </form>
+                        <% } %>
+                        <% if (user.username === message.username) { %>
+                            <form action="/editMessage" method="POST" style="display:inline;">
+                                <input type="hidden" name="messageId" value="<%= message.id %>">
+                                <button type="submit">Edit</button>
+                            </form>
+                        <% } %>
+                        
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
         <a href="/clubForum">Go to the Forum</a>
     <%- include('../partials/footer') %>
     <% } %>

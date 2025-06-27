@@ -6,7 +6,6 @@ router.get('/createClub', clubController.showCreateClubForm);
 router.post('/createClub', clubController.createClub);
 
 router.get('/joinClub/:club_id', clubController.showJoinClubForm);
-
 router.post('/joinClub/:club_id', clubController.joinClub);
 
 

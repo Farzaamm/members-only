@@ -1,13 +1,11 @@
+const Message = require('../models/msgModel')
 
-const index = (req, res) => {
-    res.render('pages/index', {title: 'Home'});
-}
-
-const about = (req, res) => {
-    res.render('pages/about', {title: 'About'});
-}
-
-module.exports = {
-    index,
-    about
+module.exports = indexController = {
+    index: async (req, res) => {
+        const messages = await Message.getAllMessages();
+        res.render('pages/index', { title: 'Home', messages });
+    },
+    about: (req, res) => {
+        res.render('pages/about', { title: 'About' });
+    }
 }
