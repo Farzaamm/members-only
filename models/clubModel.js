@@ -24,7 +24,7 @@ module.exports = Club = {
             `;
             const insertValues = [clubName, passcode];
             const insertResult = await client.query(insertQuery, insertValues);
-            console.log('Club created:', insertResult.rows[0]);
+            // console.log('Club created:', insertResult.rows[0]);
 
             // Insert the club creator's user ID into the user_clubs table
             const creatorQuery = `
@@ -35,7 +35,7 @@ module.exports = Club = {
             await client.query(creatorQuery, creatorValues);
 
             await client.query('COMMIT');
-            console.log('Club creator/admin added:', userId);
+            // console.log('Club creator/admin added:', userId);
             return insertResult.rows[0]; // Return the created club
         } catch (error) {
             console.error('Error checking club name:', error);

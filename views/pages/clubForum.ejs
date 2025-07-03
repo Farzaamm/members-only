@@ -9,32 +9,36 @@
     <% if (error_msg) { %>
         <div class="alert alert-danger"><%= error_msg %></div>
     <% } %>
-    <h1>Hello, <%= user.first_name %></h1> 
-    <h3>See the messages of the club members</h3>
-    <% if (messages.length > 0) { %>
-        <ul>
-            <% messages.forEach(message => { %>
-                <li>
-                    <strong><%= message.username %></strong>
-                    <p><%= message.content %></p>
-                    <span class="timestamp"><em><%= message.created_at %></em></span>
-                    <% if (user.username === message.username) { %>
-                        <form action="/deleteMessage" method="POST" style="display:inline;">
-                            <input type="hidden" name="messageId" value="<%= message.id %>">
-                            <button type="submit">Delete</button>
-                        </form>
-                    <% } %>
-                    <% if (user.username === message.username) { %>
-                        <form action="/editMessage" method="POST" style="display:inline;">
-                            <input type="hidden" name="messageId" value="<%= message.id %>">
-                            <button type="submit">Edit</button>
-                        </form>
-                    <% } %>
-                    
-                </li>
-            <% }) %>
-        </ul>
-    <% } %>
+    <div class="container">
+        <h1>Hello, <%= user.first_name %></h1> 
+        <% if (messages.length > 0) { %>
+            <div class="messages">
+                <ul>
+                    <% messages.forEach(message => { %>
+                        <li>
+                            <strong><%= message.username %></strong>
+                            <p><%= message.content %></p>
+                            <span class="timestamp"><em><%= message.created_at %></em></span>
+                            <div class="actionButtons">
+                                <% if (user.username === message.username) { %>
+                                    <form action="/deleteMessage" method="POST" style="display:inline;">
+                                        <input type="hidden" name="messageId" value="<%= message.id %>">
+                                        <button type="submit">Delete</button>
+                                    </form>
+                                <% } %>
+                                <% if (user.username === message.username) { %>
+                                    <form action="/editMessage" method="POST" style="display:inline;">
+                                        <input type="hidden" name="messageId" value="<%= message.id %>">
+                                        <button type="submit">Edit</button>
+                                    </form>
+                                <% } %>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+            </div>
+    </div>
     
     <%- include('../partials/footer') %>
 </body>
